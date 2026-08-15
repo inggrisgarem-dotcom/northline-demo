@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Northline Physiotherapy — Get your range back</title>
+<meta name="description" content="Hands-on physiotherapy for injury recovery, chronic pain, and getting back to the things you stopped doing. No referral needed.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBFAF6;
+  --paper-2:#F1F0E9;
+  --ink:#141B19;
+  --petrol:#1B4842;
+  --petrol-soft:#2E6B62;
+  --saffron:#D9922B;
+  --line:#DEDCD2;
+  --muted:#5A6461;
+  --display:"Fraunces",Georgia,serif;
+  --body:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-tap-highlight-color:transparent;scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);
+  font-size:clamp(16px,.95rem + .2vw,17.5px);line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;margin:0 0 .4em;text-wrap:balance}
+p{margin:0 0 1.1em;text-wrap:pretty}
+a{color:inherit}
+.wrap{width:min(1120px,100% - clamp(24px,6vw,80px));margin-inline:auto}
+.eyebrow{
+  font-size:.7rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--petrol-soft);display:block;margin-bottom:1em;
+}
+:focus-visible{outline:2px solid var(--petrol);outline-offset:3px;border-radius:3px}
+
+/* ---------- header ---------- */
+header{
+  position:sticky;top:0;z-index:50;background:rgba(251,250,246,.88);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;min-height:70px;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:-.01em}
+.logo svg{flex:none}
+.nav-links{display:none;gap:30px;font-size:.92rem;font-weight:500}
+.nav-links a{text-decoration:none;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--petrol)}
+@media(min-width:860px){.nav-links{display:flex}}
+.nav-check{position:absolute;width:0;height:0;opacity:0;pointer-events:none}
+.nav-toggle{
+  display:inline-flex;flex-direction:column;justify-content:center;gap:4px;
+  width:40px;height:40px;padding:0;border:1px solid var(--line);border-radius:10px;
+  background:transparent;cursor:pointer;flex:none;
+}
+.nav-toggle span{display:block;width:18px;height:2px;background:var(--ink);margin-inline:auto;transition:transform .2s ease,opacity .2s ease}
+.nav-check:checked ~ .wrap .nav-toggle span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.nav-check:checked ~ .wrap .nav-toggle span:nth-child(2){opacity:0}
+.nav-check:checked ~ .wrap .nav-toggle span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+@media(min-width:860px){.nav-toggle{display:none}}
+.mobile-nav{
+  display:flex;flex-direction:column;
+  max-height:0;overflow:hidden;opacity:0;
+  background:var(--paper);border-bottom:1px solid var(--line);
+  transition:max-height .28s ease,opacity .22s ease;
+}
+/* Buka/tutup murni CSS — checkbox tersembunyi + selector saudara.
+   Tidak bergantung sama sekali pada JavaScript berhasil dieksekusi. */
+.nav-check:checked ~ .mobile-nav{max-height:380px;opacity:1}
+.mobile-nav a{padding:14px clamp(24px,6vw,80px);text-decoration:none;color:var(--ink);font-size:.98rem;font-weight:500;border-top:1px solid var(--line)}
+.mobile-nav a:first-child{border-top:0}
+.mobile-nav .btn{margin:14px clamp(24px,6vw,80px) 18px;justify-content:center}
+@media(min-width:860px){.mobile-nav{display:none}}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:100px;
+  font-family:var(--body);font-size:.92rem;font-weight:600;text-decoration:none;
+  border:1px solid transparent;cursor:pointer;transition:transform .18s,background .18s,box-shadow .18s;
+}
+.btn-primary{background:var(--petrol);color:#fff}
+.btn-primary:hover{background:#153A35;transform:translateY(-1px);box-shadow:0 8px 20px -8px rgba(27,72,66,.5)}
+.btn-ghost{border-color:var(--line);color:var(--ink);background:transparent}
+.btn-ghost:hover{border-color:var(--petrol);color:var(--petrol)}
+.btn-sm{padding:10px 18px;font-size:.86rem}
+
+/* ---------- hero ---------- */
+.hero{padding:clamp(48px,7vw,90px) 0 clamp(40px,6vw,72px)}
+.hero-grid{display:grid;gap:clamp(36px,5vw,60px);align-items:center}
+@media(min-width:900px){.hero-grid{grid-template-columns:1.05fr .95fr}}
+.hero h1{font-size:clamp(2.6rem,1.6rem + 4.4vw,4.3rem);letter-spacing:-.025em}
+.hero .lede{font-size:clamp(1.06rem,1rem + .35vw,1.22rem);color:var(--muted);max-width:44ch;margin-bottom:1.8em}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+.hero-note{margin-top:22px;font-size:.85rem;color:var(--muted)}
+.hero-note b{color:var(--petrol);font-weight:600}
+
+/* ---------- SIGNATURE: range-of-motion arc ---------- */
+.rom{
+  position:relative;background:var(--paper-2);border:1px solid var(--line);
+  border-radius:22px;padding:clamp(24px,4vw,36px);
+}
+.rom-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.rom-title{font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--petrol-soft)}
+.rom-read{font-family:var(--display);font-size:1.9rem;font-weight:700;color:var(--petrol);line-height:1;font-variant-numeric:tabular-nums}
+.rom svg{display:block;width:100%;height:auto}
+.rom-arc-fill{fill:none;stroke:var(--petrol);stroke-width:8;stroke-linecap:round}
+.rom-needle{stroke:var(--saffron);stroke-width:3;stroke-linecap:round}
+.rom-hub{fill:var(--saffron)}
+.rom-tick{stroke:#C8C5B8;stroke-width:1.5;stroke-linecap:round}
+.rom-caption{margin:14px 0 0;font-size:.86rem;color:var(--muted)}
+.rom-legend{display:flex;gap:18px;margin-top:14px;font-size:.76rem;color:var(--muted)}
+.rom-legend span{display:flex;align-items:center;gap:7px}
+.rom-legend i{width:11px;height:11px;border-radius:50%;display:block}
+
+/* ---------- trust strip ---------- */
+.strip{border-block:1px solid var(--line);background:var(--paper-2)}
+.strip-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.strip-item{
+  display:flex;flex-direction:column;justify-content:flex-end;gap:.4em;
+  min-height:92px;padding:18px 10px 22px;text-align:center;
+  border-left:1px solid var(--line);
+}
+.strip-item:first-child{border-left:0}
+.strip-item b{font-family:var(--display);font-size:clamp(1.3rem,1.05rem + .9vw,1.9rem);color:var(--petrol);line-height:1.15}
+.strip-item span{font-size:.74rem;color:var(--muted);letter-spacing:.04em}
+
+/* ---------- sections ---------- */
+.sec{padding:clamp(56px,8vw,104px) 0;scroll-margin-top:calc(var(--header-h,86px) + 8px)}
+.sec-head{max-width:56ch;margin-bottom:clamp(32px,4vw,48px)}
+.sec-head h2{font-size:clamp(1.9rem,1.4rem + 2.2vw,2.9rem);letter-spacing:-.02em}
+.sec-head p{color:var(--muted);margin-bottom:0}
+
+/* conditions */
+.cond{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+@media(min-width:640px){.cond{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:980px){.cond{grid-template-columns:repeat(3,1fr)}}
+.cond-item{background:var(--paper);padding:26px 24px;transition:background-color .15s ease}
+.cond-item:active,.cond-item.tapped{background-color:#F1EEDD}
+.cond-item h3{font-size:1.08rem;margin-bottom:.35em}
+.cond-item p{font-size:.92rem;color:var(--muted);margin:0;line-height:1.6}
+
+/* steps — a real sequence, so numbers carry meaning */
+.steps{display:grid;gap:clamp(24px,3vw,34px)}
+@media(min-width:820px){.steps{grid-template-columns:repeat(3,1fr)}}
+.step{position:relative;padding-top:22px;border-top:2px solid var(--petrol);transition:background-color .15s ease;border-radius:0 0 10px 10px}
+.step:active,.step.tapped{background-color:rgba(217,146,43,.07)}
+.step-n{
+  font-family:var(--display);font-size:.9rem;font-weight:700;color:var(--saffron);
+  letter-spacing:.05em;display:block;margin-bottom:10px;
+}
+.step h3{font-size:1.2rem;margin-bottom:.4em}
+.step p{font-size:.94rem;color:var(--muted);margin:0}
+
+/* pricing */
+.pricing{background:var(--petrol);color:#F2F5F3}
+.pricing .sec-head h2{color:#fff}
+.pricing .sec-head p{color:#B9CAC6}
+.price-list{border-top:1px solid rgba(255,255,255,.16)}
+.price-row{
+  display:flex;flex-wrap:wrap;gap:8px 20px;align-items:baseline;justify-content:space-between;
+  padding:22px clamp(10px,2vw,16px);border-bottom:1px solid rgba(255,255,255,.16);
+  border-radius:8px;transition:background-color .15s ease;
+}
+.price-row:active,.price-row.tapped{background-color:rgba(255,255,255,.07)}
+.price-row h3{font-size:1.15rem;margin:0;color:#fff}
+.price-row .meta{font-size:.86rem;color:#B9CAC6;flex-basis:100%;margin:0}
+.price-row .amt{font-family:var(--display);font-size:1.7rem;font-weight:700;color:var(--saffron);white-space:nowrap}
+.price-note{margin:26px 0 0;font-size:.88rem;color:#B9CAC6}
+
+/* booking */
+.book{text-align:center;max-width:60ch;margin-inline:auto}
+.book h2{font-size:clamp(2rem,1.5rem + 2.4vw,3rem)}
+.book p{color:var(--muted)}
+.book-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:8px}
+.hours{
+  margin-top:44px;display:grid;gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:14px;overflow:hidden;text-align:left;
+}
+@media(min-width:600px){.hours{grid-template-columns:repeat(3,1fr)}}
+.hours div{background:var(--paper);padding:20px}
+.hours b{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--petrol-soft);margin-bottom:6px}
+.hours span{font-size:.94rem}
+
+footer{border-top:1px solid var(--line);padding:36px 0;font-size:.86rem;color:var(--muted)}
+.foot{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center}
+
+/* motion — konten TAMPIL secara default. JS baru menyembunyikan
+   elemen sesaat jika ia sudah memasang jaring pengaman (setTimeout)
+   yang menjamin elemen itu tetap muncul walau observer gagal. */
+.reveal{opacity:1;transform:none}
+.reveal.pre{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.reveal.pre.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal.pre{opacity:1;transform:none;transition:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <input type="checkbox" id="navToggle" class="nav-check">
+  <div class="wrap nav">
+    <a class="logo" href="#top">
+      <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
+        <circle cx="13" cy="13" r="12" fill="none" stroke="#1B4842" stroke-width="2"/>
+        <path d="M7 17 C 10 8, 16 8, 19 17" fill="none" stroke="#D9922B" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+      Northline
+    </a>
+    <nav class="nav-links">
+      <a href="#treat">What we treat</a>
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#book">Contact</a>
+    </nav>
+    <label for="navToggle" class="nav-toggle" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </label>
+  </div>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
+    <a href="#treat">What we treat</a>
+    <a href="#how">How it works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#book">Contact</a>
+    <a class="btn btn-primary" href="#book">Book an assessment</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Physiotherapy · Northline Clinic</span>
+        <h1>Get your range back.</h1>
+        <p class="lede">Hands-on treatment for injury recovery, chronic pain, and the
+        movements you've quietly stopped doing.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#book">Book an assessment</a>
+          <a class="btn btn-ghost" href="#pricing">See pricing</a>
+        </div>
+        <p class="hero-note"><b>No referral needed.</b> Most people are seen within three days.</p>
+      </div>
+
+      <!-- SIGNATURE: shoulder range measured before and after treatment -->
+      <div class="rom">
+        <div class="rom-head">
+          <span class="rom-title">Shoulder range · typical case</span>
+          <span class="rom-read" id="romRead">158°</span>
+        </div>
+        <svg viewBox="0 0 320 200" role="img" aria-label="Diagram showing a shoulder range of motion reading of 158 degrees">
+          <line class="rom-tick" x1="160" y1="170" x2="160" y2="40"/>
+          <line class="rom-tick" x1="160" y1="170" x2="290" y2="170"/>
+          <line class="rom-tick" x1="160" y1="170" x2="30" y2="170"/>
+          <path class="rom-arc-fill" id="romArc" d="M 290 170 A 130 130 0 0 0 30 170"/>
+          <line class="rom-needle" id="romNeedle" x1="160" y1="170" x2="280.5" y2="121.3"/>
+          <circle class="rom-hub" cx="160" cy="170" r="6"/>
+        </svg>
+        <p class="rom-caption">Week 1 to week 8. We measure range at every review, so progress
+        is something you can see rather than something you hope for.</p>
+        <div class="rom-legend">
+          <span><i style="background:#D9922B"></i> Needle marks the measured angle</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <div class="strip">
+    <div class="wrap">
+      <div class="strip-grid">
+        <div class="strip-item"><b>12 years</b><span>IN PRACTICE</span></div>
+        <div class="strip-item"><b>45 min</b><span>FIRST ASSESSMENT</span></div>
+        <div class="strip-item"><b>No referral</b><span>BOOK DIRECTLY</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONDITIONS -->
+  <section class="sec" id="treat">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">What we treat</span>
+        <h2>Pain has a cause. We look for it.</h2>
+        <p>Most people arrive after months of managing around a problem. The first session is
+        about finding what's actually driving it — not just treating where it hurts.</p>
+      </div>
+      <div class="cond reveal">
+        <div class="cond-item">
+          <h3>Back &amp; neck pain</h3>
+          <p>Desk-related strain, disc irritation, and the stiffness that arrives after a long drive or a bad night.</p>
+        </div>
+        <div class="cond-item">
+          <h3>Sports injuries</h3>
+          <p>Sprains, tendon problems, and return-to-sport planning that doesn't send you straight back into the same injury.</p>
+        </div>
+        <div class="cond-item">
+          <h3>Post-surgery recovery</h3>
+          <p>Structured rehabilitation after knee, hip, or shoulder surgery, working alongside your surgeon's protocol.</p>
+        </div>
+        <div class="cond-item">
+          <h3>Shoulder &amp; knee</h3>
+          <p>Frozen shoulder, rotator cuff pain, patellar tracking problems, and joints that give way without warning.</p>
+        </div>
+        <div class="cond-item">
+          <h3>Workplace strain</h3>
+          <p>Repetitive strain, wrist and forearm pain, and the postural load that builds up over years at a desk or on a site.</p>
+        </div>
+        <div class="cond-item">
+          <h3>Persistent pain</h3>
+          <p>Pain that has outlasted the injury that caused it, where the goal is restoring confidence in movement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="sec" id="how" style="background:var(--paper-2);border-block:1px solid var(--line)">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">How it works</span>
+        <h2>Three stages, in this order.</h2>
+        <p>No open-ended courses of treatment. You'll know after the first session what the plan is
+        and roughly how long it should take.</p>
+      </div>
+      <div class="steps reveal">
+        <div class="step">
+          <span class="step-n">STAGE 01</span>
+          <h3>Assessment</h3>
+          <p>Forty-five minutes. We take a history, measure range and strength, and test the movements
+          that reproduce your pain. You leave with an explanation, not a leaflet.</p>
+        </div>
+        <div class="step">
+          <span class="step-n">STAGE 02</span>
+          <h3>Treatment plan</h3>
+          <p>Hands-on work in the clinic, plus a short home programme built around what you'll
+          realistically do. Four exercises you complete beats twelve you abandon.</p>
+        </div>
+        <div class="step">
+          <span class="step-n">STAGE 03</span>
+          <h3>Progress reviews</h3>
+          <p>We re-measure at each review and adjust. When your numbers hold steady without treatment,
+          we discharge you rather than book you in again.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="sec pricing" id="pricing">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow" style="color:#D9922B">Pricing</span>
+        <h2>Published, and not negotiable at the desk.</h2>
+        <p>You'll know what a course of treatment costs before you commit to it.</p>
+      </div>
+      <div class="price-list">
+        <div class="price-row">
+          <h3>Initial assessment</h3>
+          <span class="amt">$85</span>
+          <p class="meta">45 minutes · includes first treatment and home programme</p>
+        </div>
+        <div class="price-row">
+          <h3>Follow-up session</h3>
+          <span class="amt">$60</span>
+          <p class="meta">30 minutes · hands-on treatment and programme review</p>
+        </div>
+        <div class="price-row">
+          <h3>Six-session plan</h3>
+          <span class="amt">$320</span>
+          <p class="meta">Assessment plus five follow-ups · saves $65 against single sessions</p>
+        </div>
+      </div>
+      <p class="price-note">Most people need between three and six sessions. If you need fewer,
+      you pay for fewer — unused sessions on a plan are refunded.</p>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section class="sec" id="book">
+    <div class="wrap book">
+      <span class="eyebrow">Book</span>
+      <h2>Start with an assessment.</h2>
+      <p>Call the clinic or send a message with a rough idea of what's going on and when you're free.
+      We'll come back the same working day.</p>
+      <div class="book-actions">
+        <a class="btn btn-primary" href="tel:+15550134090">Call the clinic</a>
+        <a class="btn btn-ghost" href="mailto:hello@northlinephysio.example">Send a message</a>
+      </div>
+      <div class="hours">
+        <div><b>Weekdays</b><span>7:30am – 7:00pm</span></div>
+        <div><b>Saturday</b><span>8:00am – 1:00pm</span></div>
+        <div><b>Address</b><span>14 Northline Road, Unit 2</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Northline Physiotherapy</span>
+    <span>Demo build — sample project, not a live business</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- 0. tinggi header — dipakai supaya anchor link tidak
+     tertutup header sticky, dan ikut terukur ulang saat menu mobile
+     buka/tutup ---------- */
+  var hdr = document.querySelector('header');
+  function setHeaderH(){
+    if (!hdr) return;
+    document.documentElement.style.setProperty('--header-h', hdr.offsetHeight + 'px');
+  }
+  setHeaderH();
+  window.addEventListener('resize', setHeaderH);
+  window.addEventListener('load', setHeaderH);
+  if ('ResizeObserver' in window && hdr){ new ResizeObserver(setHeaderH).observe(hdr); }
+
+  /* ---------- 1. menu hamburger (mobile) ----------
+     Buka/tutup utamanya sudah dipegang penuh oleh CSS lewat
+     checkbox #navToggle — lihat aturan .nav-check:checked di atas.
+     Bagian JS ini cuma pemanis: menutup otomatis saat sebuah link
+     di dalam menu diklik. Kalau baris ini tidak sempat jalan, menu
+     tetap bisa dibuka-tutup manual lewat ikon hamburger — fungsi
+     utamanya tidak bergantung pada JavaScript sama sekali. */
+  var navCheckbox = document.getElementById('navToggle'),
+      mobileNav = document.getElementById('mobileNav');
+  if (navCheckbox && mobileNav){
+    mobileNav.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ navCheckbox.checked = false; });
+    });
+  }
+
+  /* ---------- 2. efek tap pada kartu ----------
+     pointerdown/pointerup — event dasar yang didukung di mana pun,
+     tidak lewat observer apa pun. */
+  document.querySelectorAll('.cond-item, .price-row, .step').forEach(function(el){
+    el.addEventListener('pointerdown', function(){ el.classList.add('tapped'); });
+    ['pointerup', 'pointerleave', 'pointercancel'].forEach(function(evt){
+      el.addEventListener(evt, function(){
+        setTimeout(function(){ el.classList.remove('tapped'); }, 180);
+      });
+    });
+  });
+
+  /* ---------- 3. scroll reveal ----------
+     Konten sudah terlihat lewat CSS (.reveal{opacity:1}). Kelas
+     'pre' — yang menyembunyikan sementara untuk efek fade — hanya
+     ditambahkan kalau jaring pengaman (setTimeout) sudah terpasang,
+     jadi tidak akan pernah tersembunyi permanen kalau observer-nya
+     gagal di perangkat tertentu. */
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var items = document.querySelectorAll('.reveal');
+  if (!reduce && 'IntersectionObserver' in window && items.length){
+    items.forEach(function(el){ el.classList.add('pre'); });
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:0, rootMargin:'0px 0px -10% 0px'});
+    items.forEach(function(el){ io.observe(el); });
+    setTimeout(function(){
+      items.forEach(function(el){ el.classList.add('in'); });
+    }, 1500);
+  }
+})();
+</script>
+</body>
+</html>
