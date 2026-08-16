@@ -20,3 +20,8 @@ Nama klinik, alamat, harga, dan kontak bersifat fiktif.
 ## Riwayat versi
 - `v1.0-live` — deploy awal, busur statis
 - `v1.1-anim` — animasi sweep range-of-motion ditambahkan
+
+## Status Upwork
+Project Catalog listing **disetujui** dan live per 16 Agustus 2026.
+Judul: "You will get a fast, conversion-focused landing page for your business"
+Tier: Starter $19 / Standard $29 / Advanced $39
